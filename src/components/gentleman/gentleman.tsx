@@ -1,14 +1,23 @@
 import { GentlemanType } from '../../models/type';
+import { useState } from 'react';
 
 type Props = {
   gentleman: GentlemanType[];
 };
 
 export function Gentleman({ gentleman }: Props) {
+  const [gentlemansList, setGentlemansList] = useState(gentleman);
+  const handleDeleteClick = (id: number) => {
+    const updatedList = gentlemansList.filter(
+      (gentleman: GentlemanType) => gentleman.id !== id
+    );
+    setGentlemansList(updatedList);
+  };
+
   return (
     <main className="main">
       <ul className="gentlemen">
-        {gentleman.map((item) => (
+        {gentlemansList.map((item) => (
           <li className="gentleman">
             <div className="gentleman__avatar-container">
               <img
@@ -36,7 +45,12 @@ export function Gentleman({ gentleman }: Props) {
               </ul>
             </div>
             <i className="icon gentleman__icon fas fa-check"></i>
-            <i className="icon gentleman__icon gentleman__icon--delete fas fa-times"></i>
+            <i
+              role="button"
+              className="icon gentlemanicon gentlemanicon--delete fas fa-times"
+              onClick={() => handleDeleteClick(item.id)}
+            ></i>
+            ;
           </li>
         ))}
       </ul>

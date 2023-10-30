@@ -1,4 +1,4 @@
-import { Gentleman } from '../cards/gentleman';
+import { Gentleman } from '../gentleman/gentleman';
 import { Info } from '../info/info';
 import '../styles.scss/style.css';
 import { gentleman } from '../../data/repo';
